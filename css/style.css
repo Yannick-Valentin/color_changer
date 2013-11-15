@@ -1,69 +1,61 @@
 html, body {
-  min-height: 100%;
-  height: 100%;
-  font-family: Helvetica, Arial, sans-serif;
+	min-height: 100%;
+	height: 100%;
+	font-family: Helvetica, Arial, sans-serif;
+	background: url('../images/bg_noise.png') repeat #222;
 }
 
 #global {
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  -webkit-background-size: cover;
-  background-size: cover;
-  position: relative;
-  z-index: 1;
+	width: 100%;
+	height: 100%;
+	text-align: left;
+	-webkit-background-size: cover;
+	background-size: cover;
+	position: relative;
+	z-index: 1;
 }
 
 a.button {
-  position: absolute;
-  top: 50%;
-  margin-top: -20px;
-  left: 50%;
-  margin-left: -50px;
-  display: inline-block;
-  vertical-align: middle;
-  color: white;
-  font-weight: bold;
-  text-decoration: none;
-  padding: 0.3em 0.5em;
-  font-size: 20px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
-  border: 3px solid white;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.2);
-  -webkit-transition: background 150ms ease;
-  -moz-transition: background 150ms ease;
-  -o-transition: background 150ms ease;
-  transition: background 150ms ease;
+	z-index: 1;
+	position: absolute;
+	left: 25px;
+	bottom: 25px;
+	display: inline-block;
+	vertical-align: middle;
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
+	font-size: 15px;
+	border-bottom: 1px solid transparent;
+	-webkit-transition: letter-spacing 150ms ease;
+	-moz-transition: letter-spacing 150ms ease;
+	-o-transition: letter-spacing 150ms ease;
+	transition: letter-spacing 150ms ease;
 }
 
-a.button:hover {
-  background: rgba(255, 255, 255, 0.3);
-}
+a.button:hover {letter-spacing: 0.1em}
+
+a.button:active {bottom: 24px;}
 
 /* Images changer.css */
 .color_changer {
-  background: #333;
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+	position: absolute;
+	z-index: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	cursor: pointer;
 }
 
 .color_changer > div {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  -webkit-background-size: cover;
-  background-size: cover;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	-webkit-background-size: cover;
+	background-size: cover;
 }
