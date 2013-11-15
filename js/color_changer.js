@@ -2,6 +2,8 @@ function color_changer(config) {
   
 	// Parametres par défaut
 	params = {
+		rows: 	1,
+		cols: 	1,
 		number: 10,
 		timer: 	50,
 		repeat: true
@@ -20,6 +22,34 @@ function color_changer(config) {
 			colors[i] = '#'+Math.floor(Math.random()*16777215).toString(16);
 		}
 	}
+
+	
+	build_blocks();
+
+	function build_blocks() {
+
+        element.className = element.className + ' rows-' + params.rows;
+        element.className = element.className + ' cols-' + params.cols;
+
+		// Créé les lignes
+		for(i=1 ; i<= params.rows ; i++) {
+			var row=document.createElement("div");
+            element.appendChild(row);
+            row.className = "rows";
+            row.style.height = 100 / params.rows + '%';
+
+            // Créé les colonnes            
+			for(c=1 ; c<= params.cols ; c++) {
+				var col=document.createElement("div");
+	            row.appendChild(col);
+	            col.className = "cols";
+            	col.style.width = 100 / params.cols + '%';
+	        }
+		}
+
+	}
+
+		
 
 	this.play = function(){	
 
@@ -63,27 +93,10 @@ function color_changer(config) {
 }
 
 var color_changer = new color_changer({
-		element: 		document.getElementById('color_changer'),
-		number: 		10,
-		timer: 			50,
-		repeat: 		true
+	rows: 		1,
+	cols: 		1,
+	element: 	document.getElementById('color_changer'),
+	number: 	10,
+	timer: 		50,
+	repeat: 	true
 });
-//color_changer.method();
-
-//color_changer();
- 
-
- // color_changer('test');
-
-/*
-
-function test_function(config) {
-	var config = config;
-
-	//alert(config);
-	this.test = function(){alert(config)};
-}
-
-var test_function = new test_function('alert');
-
-test_function.test();*/
