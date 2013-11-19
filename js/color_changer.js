@@ -248,7 +248,7 @@ toolbox_toggle.onclick = function(){
 		toolbox_toggle.className = 'toggled';
 		//animate(toolbox, 'top', 0, 500);
 	} else {
-		toolbox.style.top = '-72px';
+		toolbox.style.top = '-118px';
 		toolbox_toggle.className = '';
 		//animate(toolbox, 'top', -72, 500);
 	}
