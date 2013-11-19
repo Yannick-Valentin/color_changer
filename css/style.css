@@ -6,7 +6,7 @@ html, body {
 	min-height: 100%;
 	height: 100%;
 	font-family: Helvetica, Arial, sans-serif;
-	background: url('../images/bg_noise.png') repeat #222;
+	background: url('../images/bg_noise.png') repeat #111;
 	font-size: 0.875em;
 	color:#FFF;
 }
