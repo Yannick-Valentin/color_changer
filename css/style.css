@@ -26,6 +26,14 @@ html, body {
 	max-width: 980px;
 	padding: 0 15px;
 }
+
+.hr {
+	height: 1px;
+	background: #EEE;
+	padding: 0 !important;
+	margin: 10px 0 5px;
+}
+
 a.button {
 	z-index: 1;
 	position: absolute;
@@ -54,9 +62,8 @@ button {position: relative; z-index: 2;}
 	position: absolute;
 	z-index: 2;
 	left: 0; right: 0; /* top: -72px; */
-	height: 118px;
 	background: #FFF;
-	padding: 10px 15px;
+	padding: 10px 15px 15px;
 }
 
 	label {
@@ -67,24 +74,48 @@ button {position: relative; z-index: 2;}
 		vertical-align: middle;
 	}
 
-	input[type=range] {
+	input[type="range"] {
+		-webkit-appearance: none;
 		display: inline-block;
 		vertical-align: middle;
 		width: 220px;
 		height: 30px;
+		position: relative;
 	}
 
-	input[type=range]::-webkit-slider-thumb {
+		input[type="range"]:after {
+			content:" ";
+			display: block;
+			background: #CCC;
+			width: 100%;
+			position: absolute;
+			height: 3px;
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
+			border-radius: 5px;
+			border-top: 1px solid #AAA;
+			left: 0; right: 0; top: 14px;
+		}
+
+	input[type="range"]::-webkit-slider-thumb {
 		-webkit-appearance: none;
-		width: 30px; height: 30px;
-		background: #fdfdfd; background: -moz-linear-gradient(top, #fdfdfd 0%, #bebebe 100%); background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fdfdfd), color-stop(100%,#bebebe)); background: -webkit-linear-gradient(top, #fdfdfd 0%,#bebebe 100%); background: -o-linear-gradient(top, #fdfdfd 0%,#bebebe 100%); background: -ms-linear-gradient(top, #fdfdfd 0%,#bebebe 100%); background: linear-gradient(to bottom, #fdfdfd 0%,#bebebe 100%);
-		border: 1px solid #bbb;
+		width: 26px; height: 26px;
+		background: #FFF;
+		opacity: 1;
+		position: relative;
+		z-index: 2;
+		border: 1px solid #DDD;
+		-webkit-box-shadow: 0 1px 5px #AAA;
+		-moz-box-shadow: 0 1px 5px #AAA;
+		box-shadow: 0 1px 5px #AAA;
 		-webkit-border-radius: 22px; -moz-border-radius: 22px; border-radius: 22px;
 	}
 
 	#toolbox > div {
 		padding-top: 5px;
 	}
+
+	#toolbox .hr {margin-left: -15px; margin-right: -15px;}
 
 	#toolbox_toggle {
 		background: white;

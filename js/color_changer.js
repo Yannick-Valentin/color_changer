@@ -20,6 +20,8 @@ function color_changer(config) {
 	var colors = new Array,
 		element = params.element,
 		interval_timer = params.timer,
+		rows = params.rows,
+		cols = params.cols,
 		interval;
 
 		is_playing = false;
@@ -58,22 +60,22 @@ function color_changer(config) {
 	
 	this.build = function(){
 
-        element.className = element.className + ' rows-' + params.rows;
-        element.className = element.className + ' cols-' + params.cols;
+       // element.className = element.className + ' rows-' + rows;
+       // element.className = element.className + ' cols-' + cols;
 
 		// Créé les lignes
-		for(i=1 ; i<= params.rows ; i++) {
+		for(i=1 ; i<= rows ; i++) {
 			var row=document.createElement("div");
             element.appendChild(row);
             row.className = "rows";
-            row.style.height = 100 / params.rows + '%';
+            row.style.height = 100 / rows + '%';
 
             // Créé les colonnes            
-			for(c=1 ; c<= params.cols ; c++) {
+			for(c=1 ; c<= cols ; c++) {
 				var col=document.createElement("div");
 	            row.appendChild(col);
 	            col.className = "cols";
-            	col.style.width = 100 / params.cols + '%';
+            	col.style.width = 100 / cols + '%';
 	        }
 		}
 	}
@@ -181,8 +183,11 @@ function color_changer(config) {
 			colors[i] = get_random_color();
 		}
 
-		this.stop();
-		this.play();
+		if(is_playing == true) {
+			this.stop();
+			this.play();
+		}
+
 	}
 
 
@@ -192,8 +197,42 @@ function color_changer(config) {
 
 		interval_timer = new_timer;
 
-		this.stop();
-		this.play();
+		if(is_playing == true) {
+			this.stop();
+			this.play();
+		}
+	}
+
+
+	// Méthode update_rows();
+	this.update_rows = function(new_rows){
+
+		rows = new_rows;
+
+		element.innerHTML = '';
+		this.build();
+
+		if(is_playing == true) {
+			//console.log(is_playing);
+			this.stop();
+			this.play();
+		}
+	}
+
+
+	// Méthode update_cols();
+	this.update_cols = function(new_cols){
+
+		cols = new_cols;
+
+		element.innerHTML = '';
+		this.build();
+
+		if(is_playing == true) {
+			//console.log(is_playing);
+			this.stop();
+			this.play();
+		}
 	}
 
 
@@ -226,20 +265,22 @@ var color_changer = new color_changer({
 
 
 
+// Bouton play
 toggle_play = document.getElementById('toggle_play_btn');
 toggle_play.onclick = function(){
 	color_changer.toggle_play();
 
 	if(is_playing == true)
-		this.className = 'pause';
+		toggle_play.className = 'pause';
 	else
-		this.className = '';
-	//console.log(is_playing);
+		toggle_play.className = '';
 }
 
 // Toggle de la toolbox
 toolbox = document.getElementById('toolbox');
 toolbox_toggle = document.getElementById('toolbox_toggle');
+
+toolbox.style.top = -toolbox.offsetHeight + 'px';
 
 toolbox_toggle.onclick = function(){
 
@@ -248,7 +289,7 @@ toolbox_toggle.onclick = function(){
 		toolbox_toggle.className = 'toggled';
 		//animate(toolbox, 'top', 0, 500);
 	} else {
-		toolbox.style.top = '-118px';
+		toolbox.style.top = -toolbox.offsetHeight + 'px';
 		toolbox_toggle.className = '';
 		//animate(toolbox, 'top', -72, 500);
 	}
@@ -264,6 +305,12 @@ inputColors = document.getElementById('colors');
 
 inputColors.onchange = function(){
 	color_changer.update_colors(this.value);
+
+	if(is_playing == true)
+		toggle_play.className = 'pause';
+	else
+		toggle_play.className = '';
+
 }
 
 
@@ -272,9 +319,40 @@ inputTimer = document.getElementById('timer');
 
 inputTimer.onchange = function(){
 	color_changer.update_timer(this.value);
+
+	if(is_playing == true)
+		toggle_play.className = 'pause';
+	else
+		toggle_play.className = '';
 }
 
 
+
+// Met à jour les rangs suivant le input range
+inputRows = document.getElementById('rows');
+
+inputRows.onchange = function(){
+	color_changer.update_rows(this.value);
+
+	if(is_playing == true)
+		toggle_play.className = 'pause';
+	else
+		toggle_play.className = '';
+}
+
+
+
+// Met à jour les rangs suivant le input range
+inputCols = document.getElementById('cols');
+
+inputCols.onchange = function(){
+	color_changer.update_cols(this.value);
+
+	if(is_playing == true)
+		toggle_play.className = 'pause';
+	else
+		toggle_play.className = '';
+}
 
 
 
