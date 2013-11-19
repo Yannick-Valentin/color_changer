@@ -105,9 +105,9 @@ button {position: relative; z-index: 2;}
 		position: relative;
 		z-index: 2;
 		border: 1px solid #DDD;
-		-webkit-box-shadow: 0 1px 5px #AAA;
+		/* -webkit-box-shadow: 0 1px 5px #AAA;
 		-moz-box-shadow: 0 1px 5px #AAA;
-		box-shadow: 0 1px 5px #AAA;
+		box-shadow: 0 1px 5px #AAA; */
 		-webkit-border-radius: 22px; -moz-border-radius: 22px; border-radius: 22px;
 	}
 
