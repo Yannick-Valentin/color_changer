@@ -265,6 +265,8 @@ var color_changer = new color_changer({
 
 
 
+
+
 // Bouton play
 toggle_play = document.getElementById('toggle_play_btn');
 toggle_play.onclick = function(){
@@ -306,6 +308,8 @@ inputColors = document.getElementById('colors');
 inputColors.onchange = function(){
 	color_changer.update_colors(this.value);
 
+	inputColors.nextSibling.innerHTML = this.value;
+
 	if(is_playing == true)
 		toggle_play.className = 'pause';
 	else
@@ -319,6 +323,8 @@ inputTimer = document.getElementById('timer');
 
 inputTimer.onchange = function(){
 	color_changer.update_timer(this.value);
+
+	inputTimer.nextSibling.innerHTML = this.value + 'ms';
 
 	if(is_playing == true)
 		toggle_play.className = 'pause';
@@ -334,6 +340,8 @@ inputRows = document.getElementById('rows');
 inputRows.onchange = function(){
 	color_changer.update_rows(this.value);
 
+	inputRows.nextSibling.innerHTML = this.value;
+
 	if(is_playing == true)
 		toggle_play.className = 'pause';
 	else
@@ -347,6 +355,8 @@ inputCols = document.getElementById('cols');
 
 inputCols.onchange = function(){
 	color_changer.update_cols(this.value);
+	
+	inputCols.nextSibling.innerHTML = this.value;
 
 	if(is_playing == true)
 		toggle_play.className = 'pause';

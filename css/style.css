@@ -78,7 +78,7 @@ button {position: relative; z-index: 2;}
 		-webkit-appearance: none;
 		display: inline-block;
 		vertical-align: middle;
-		width: 220px;
+		width: 170px;
 		height: 30px;
 		position: relative;
 	}
@@ -104,11 +104,20 @@ button {position: relative; z-index: 2;}
 		opacity: 1;
 		position: relative;
 		z-index: 2;
-		border: 1px solid #DDD;
+		/* border: 1px solid #DDD; */
 		-webkit-box-shadow: 0 1px 5px #AAA;
 		-moz-box-shadow: 0 1px 5px #AAA;
 		box-shadow: 0 1px 5px #AAA;
 		-webkit-border-radius: 22px; -moz-border-radius: 22px; border-radius: 22px;
+	}
+
+	span.value {
+		color:#666;
+		display: inline-block;
+		width: 40px;
+		margin-left: 10px;
+		font-size: .9em;
+		font-style: italic;
 	}
 
 	#toolbox > div {
@@ -213,10 +222,4 @@ button {position: relative; z-index: 2;}
 
 	.color_changer div {display: block}
 	.color_changer .rows {width: 100%; clear: both;}
-	.color_changer .cols {
-		height: 100%; float: left;
-		-webkit-transform: translate3d(0, 0, 0);
-   -moz-transform: translate3d(0, 0, 0);
-   -ms-transform: translate3d(0, 0, 0);
-   transform: translate3d(0, 0, 0);
-	}
+	.color_changer .cols {height: 100%; float: left;}
