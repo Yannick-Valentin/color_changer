@@ -17,10 +17,12 @@ function color_changer(config) {
 	for (var attrname in config) {params[attrname] = config[attrname]}
 
 	// Variables
-	var colors = new Array;
-	var element = params.element;
-	var interval;
-	var is_playing = false;
+	var colors = new Array,
+		element = params.element,
+		interval_timer = params.timer,
+		interval;
+
+		is_playing = false;
 
 	// Si random == true
 	if(params.number != '' && typeof params.number == 'number' && params.random == true) {
@@ -89,7 +91,6 @@ function color_changer(config) {
 
 		var p = 2;
 
-		interval_timer = params.timer;
 		is_playing = true;
 
 		var elementRows = element.childNodes;
@@ -105,35 +106,39 @@ function color_changer(config) {
 				elementCols[eC].style.backgroundColor = colors[the_color];
 
 				// Affiche les couleurs
-				this.play_colors(elementCols[eC]);
+				play_colors(elementCols[eC]);
 
 			}
 
 		}
 
-	}
-
-	this.play_colors = function(elementCol) {
-
-		var p = Math.floor(Math.random() * colors.length);
-
-		interval = setInterval(function() { 
-
-					elementCol.style.backgroundColor = colors[p];
-
-					p++;
-
-					// Repetition
-					if(params.repeat==true) {
-						if(p == colors.length) p=0;
-					}
-
-					if(p >= colors.length) 
-						clearInterval(interval);
-
-            	}, interval_timer);
+		return is_playing;
 
 	}
+
+		function play_colors(elementCol) {
+
+			var p = Math.floor(Math.random() * colors.length);
+
+			interval = setInterval(function() { 
+
+						elementCol.style.backgroundColor = colors[p];
+
+						p++;
+
+						// Repetition
+						if(params.repeat==true) {
+							if(p == colors.length) p=0;
+						}
+
+						if(p >= colors.length) 
+							clearInterval(interval);
+
+					}, interval_timer);
+
+		}
+
+
 
 	// Méthode stop();
 	this.stop = function(){
@@ -152,7 +157,10 @@ function color_changer(config) {
 			window.clearInterval(i);
 		
 		is_playing = false;
+
+		return is_playing;
 	}
+
 
 	// Méthode toggle_play();
 	this.toggle_play = function(){
@@ -162,20 +170,51 @@ function color_changer(config) {
 			this.stop();
 	}
 
+
+	// Méthode update_colors();
+	this.update_colors = function(new_number){
+		//console.log(new_number);
+
+		colors = new Array;
+
+		for(i=0 ; i < new_number; i++) {
+			colors[i] = get_random_color();
+		}
+
+		this.stop();
+		this.play();
+	}
+
+
+	// Méthode update_timer();
+	this.update_timer = function(new_timer){
+		//console.log(new_number);
+
+		interval_timer = new_timer;
+
+		this.stop();
+		this.play();
+	}
+
+
+
 	// Launch
 	this.build();
+
+	return is_playing;
 }
 
 
 
 
+// Init
 colors = ['#DE5654', '#F0A954', '#5023FA'];
 
 var color_changer = new color_changer({
 	element: 	document.getElementById('color_changer'),
 
 	rows: 		200,
-	cols: 		1,
+	cols: 		2,
 
 	number: 	100,
 	//random: 	false,
@@ -184,3 +223,80 @@ var color_changer = new color_changer({
 	timer: 		50,
 	repeat: 	true
 });
+
+
+
+toggle_play = document.getElementById('toggle_play_btn');
+toggle_play.onclick = function(){
+	color_changer.toggle_play();
+
+	if(is_playing == true)
+		this.className = 'pause';
+	else
+		this.className = '';
+	//console.log(is_playing);
+}
+
+// Toggle de la toolbox
+toolbox = document.getElementById('toolbox');
+toolbox_toggle = document.getElementById('toolbox_toggle');
+
+toolbox_toggle.onclick = function(){
+
+	if(toolbox.style.top != '0px') {
+		toolbox.style.top = '0px';
+		toolbox_toggle.className = 'toggled';
+		//animate(toolbox, 'top', 0, 500);
+	} else {
+		toolbox.style.top = '-72px';
+		toolbox_toggle.className = '';
+		//animate(toolbox, 'top', -72, 500);
+	}
+
+}
+
+
+
+
+
+// Met à jour les couleurs suivant le input range
+inputColors = document.getElementById('colors');
+
+inputColors.onchange = function(){
+	color_changer.update_colors(this.value);
+}
+
+
+// Met à jour le timer suivant le input range
+inputTimer = document.getElementById('timer');
+
+inputTimer.onchange = function(){
+	color_changer.update_timer(this.value);
+}
+
+
+
+
+
+function animate(elmt, property, value, time){
+
+	the_timer = time / Math.abs(value);
+
+	counter = parseInt(elmt.style[property]);
+
+	animate_timer = setInterval(function() { 
+
+					counter += value / the_timer + 'px';
+
+					elmt.style[property] = counter;
+
+					if(counter != value) 
+						clearInterval(animate_timer);
+
+            	}, the_timer);
+
+	//elmt.style[property] = value;
+
+}
+
+

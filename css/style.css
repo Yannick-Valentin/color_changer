@@ -1,8 +1,14 @@
+*, *:before, *:after {
+	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+
 html, body {
 	min-height: 100%;
 	height: 100%;
 	font-family: Helvetica, Arial, sans-serif;
 	background: url('../images/bg_noise.png') repeat #222;
+	font-size: 0.875em;
+	color:#FFF;
 }
 
 #global {
@@ -15,6 +21,11 @@ html, body {
 	z-index: 1;
 }
 
+.container {
+	margin: 0 auto;
+	max-width: 980px;
+	padding: 0 15px;
+}
 a.button {
 	z-index: 1;
 	position: absolute;
@@ -39,7 +50,104 @@ a.button:active {bottom: 24px;}
 
 button {position: relative; z-index: 2;}
 
-/* Images changer.css */
+#toolbox {
+	position: absolute;
+	z-index: 2;
+	left: 0; right: 0; /* top: -72px; */
+	height: 72px;
+	background: #FFF;
+	padding: 10px 15px;
+}
+
+	label {
+		display: inline-block;
+		width: 60px;
+		color:#333;
+		font-weight: bold;
+		vertical-align: top;
+	}
+
+	input {
+		display: inline-block;
+		vertical-align: middle;
+		width: 220px;
+	}
+
+	#toolbox > div {
+		padding-top: 5px;
+	}
+
+	#toolbox_toggle {
+		background: white;
+		color:#999;
+		position: absolute;
+		padding: 8px 14px 8px 30px !important;
+		font-weight: bold;
+		left: 15px;
+		top: 100%;
+		-webkit-border-radius: 0 0 4px 4px;
+		-moz-border-radius: 0 0 4px 4px;
+		border-radius: 0 0 4px 4px;
+	}
+
+		#toolbox_toggle:before {
+			position: absolute;
+			top: 13px; left: 13px;
+			content:" ";
+			display: block;
+			width: 0px;
+			height: 0px;
+			border-style: solid;
+			border-width: 5px 5px 0 5px;
+			border-color: #212121 transparent transparent transparent;
+		}
+
+		#toolbox_toggle.toggled:before {
+			border-width: 0px 5px 5px 5px;
+			border-color: transparent transparent #212121 transparent;
+		}
+
+#toggle_play_btn {
+	width: 40px; height: 40px;
+	position: absolute;
+	z-index: 2;
+	opacity:0.8;
+	bottom: 18px;
+	right: 20px;
+}
+
+	#toggle_play_btn:after {
+		content:" ";
+		margin-top: 5px;
+		margin-left: 10px;
+		display: block;
+		width: 0; height: 0;
+		border-style: solid;
+		border-width: 15px 0 15px 20px;
+		border-color: transparent transparent transparent #FFFFFF;
+	}
+
+
+	#toggle_play_btn.pause:after, #toggle_play_btn.pause:before  {
+		position: absolute;
+		content:" ";
+		margin-top: 5px;
+		margin-left: 5px;
+		display: block;
+		width: 10px; height: 30px;
+		background: white;
+		border: none;
+	}
+
+	#toggle_play_btn.pause:before {
+		margin-left: 25px;
+	}
+
+
+
+
+
+/* Color changer.css */
 .color_changer {
 	position: absolute;
 	z-index: 0;
@@ -48,6 +156,8 @@ button {position: relative; z-index: 2;}
 	bottom: 0;
 	left: 0;
 	cursor: pointer;
+	height: 100%; width: 100%;
+	min-height: 100%;
 }
 
 	.color_changer div {display: block}

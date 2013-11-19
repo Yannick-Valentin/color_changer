@@ -16,7 +16,22 @@
 
 <body>
 
-	<div id="color_changer" class="color_changer" onclick="color_changer.toggle_play();"></div>
+	<div id="toolbox" style="top:-72px">
+			
+		<div>
+			<label for="colors">Colors :</label> <input type="range" value="10" max="100" min="2" name="colors" id="colors" />
+		</div>
+		<div>
+			<label for="timer">Timer :</label> <input type="range" value="10" max="500" min="1" name="timer" id="timer" />
+		</div>
+
+		<div id="toolbox_toggle">Options</div>
+
+	</div>
+
+	<div id="color_changer" class="color_changer"></div>
+
+	<div id="toggle_play_btn"></div>
 
 	<a class="button" href="http://yvalentin.com" target="_blank">Cheers<em>!</em></a>
 
