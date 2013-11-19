@@ -255,7 +255,7 @@ var color_changer = new color_changer({
 	rows: 		1,
 	cols: 		1,
 
-	number: 	100,
+	number: 	10,
 	//random: 	false,
 	colors: 	colors,
 
