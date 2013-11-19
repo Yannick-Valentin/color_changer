@@ -213,8 +213,8 @@ colors = ['#DE5654', '#F0A954', '#5023FA'];
 var color_changer = new color_changer({
 	element: 	document.getElementById('color_changer'),
 
-	rows: 		200,
-	cols: 		2,
+	rows: 		1,
+	cols: 		1,
 
 	number: 	100,
 	//random: 	false,
