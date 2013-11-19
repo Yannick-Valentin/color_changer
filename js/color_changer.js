@@ -1,10 +1,15 @@
 function color_changer(config) {
-  
-	// Parametres par défaut
+
+
+  	/*========================================*/
+	/* Parametres par défaut
+  	/*========================================*/
+
 	params = {
 		rows: 	1,
 		cols: 	1,
 		number: 10,
+		random: true,
 		timer: 	50,
 		repeat: true
 	}
@@ -17,16 +22,39 @@ function color_changer(config) {
 	var interval;
 	var is_playing = false;
 
-	if(params.number != '' && typeof params.number == 'number') {
-		for(i=1 ; i <= params.number; i++) {
-			colors[i] = '#'+Math.floor(Math.random()*16777215).toString(16);
+	// Si random == true
+	if(params.number != '' && typeof params.number == 'number' && params.random == true) {
+		for(i=0 ; i < params.number; i++) {
+			colors[i] = get_random_color();
 		}
+
+	// Sinon utilise les couleurs données dans le parametre "colors"
+	} else if(params.random == false) {
+		colors = params.colors;
 	}
 
-	
-	build_blocks();
 
-	function build_blocks() {
+	
+  	/*========================================*/
+	/* Fonctions utiles
+  	/*========================================*/
+
+	function get_random_color() {
+		var letters = '0123456789ABCDEF'.split('');
+		var color = '#';
+		for (var i = 0; i < 6; i++ ) {
+			color += letters[Math.round(Math.random() * 15)];
+		}
+		return color;
+	}
+
+
+	
+  	/*========================================*/
+	/* Process
+  	/*========================================*/
+	
+	this.build = function(){
 
         element.className = element.className + ' rows-' + params.rows;
         element.className = element.className + ' cols-' + params.cols;
@@ -46,11 +74,17 @@ function color_changer(config) {
             	col.style.width = 100 / params.cols + '%';
 	        }
 		}
-
 	}
 
+	this.destroy = function(){
+
+		this.stop();
+		element.innerHTML = '';
+
+	}
 		
 
+	// Méthode play();
 	this.play = function(){	
 
 		var p = 2;
@@ -58,45 +92,95 @@ function color_changer(config) {
 		interval_timer = params.timer;
 		is_playing = true;
 
-		element.style.backgroundColor = colors[1];
+		var elementRows = element.childNodes;
 
-		// Affiche les autres images
-    	interval = setInterval(function() { 
+		for(eR=0 ; eR < elementRows.length ; eR++){
+			elementCols = elementRows[eR].childNodes;
 
-						element.style.backgroundColor = colors[p];
+			for(eC=0 ; eC < elementCols.length ; eC++) {
 
-						p++;
+				the_color = Math.floor(Math.random() * colors.length);
 
-						// Repetition
-						if(params.repeat==true) {
-							if(p == colors.length) p=1;
-						}
+				// Colori les blocs avec une couleur aléatoire
+				elementCols[eC].style.backgroundColor = colors[the_color];
 
-						if(p >= colors.length) 
-							clearInterval(interval);
+				// Affiche les couleurs
+				this.play_colors(elementCols[eC]);
 
-                	}, interval_timer);
+			}
+
+		}
+
 	}
 
+	this.play_colors = function(elementCol) {
+
+		var p = Math.floor(Math.random() * colors.length);
+
+		interval = setInterval(function() { 
+
+					elementCol.style.backgroundColor = colors[p];
+
+					p++;
+
+					// Repetition
+					if(params.repeat==true) {
+						if(p == colors.length) p=0;
+					}
+
+					if(p >= colors.length) 
+						clearInterval(interval);
+
+            	}, interval_timer);
+
+	}
+
+	// Méthode stop();
 	this.stop = function(){
-		element.removeAttribute('style');
-		clearInterval(interval);
+
+		elementRows = element.childNodes;
+
+		for(eR=0 ; eR < elementRows.length ; eR++){
+			elementCols = elementRows[eR].childNodes;
+
+			for(eC=0 ; eC < elementCols.length ; eC++) {
+				elementCols[eC].style.backgroundColor = 'transparent';
+			}
+		}
+
+		for (var i = 1; i <= interval; i++)
+			window.clearInterval(i);
+		
 		is_playing = false;
 	}
 
+	// Méthode toggle_play();
 	this.toggle_play = function(){
 		if(is_playing == false)
 			this.play();
 		else
 			this.stop();
 	}
+
+	// Launch
+	this.build();
 }
 
+
+
+
+colors = ['#DE5654', '#F0A954', '#5023FA'];
+
 var color_changer = new color_changer({
-	rows: 		1,
-	cols: 		1,
 	element: 	document.getElementById('color_changer'),
-	number: 	10,
+
+	rows: 		200,
+	cols: 		1,
+
+	number: 	100,
+	//random: 	false,
+	colors: 	colors,
+
 	timer: 		50,
 	repeat: 	true
 });

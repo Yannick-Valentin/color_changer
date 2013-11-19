@@ -37,6 +37,8 @@ a.button:hover {letter-spacing: 0.1em}
 
 a.button:active {bottom: 24px;}
 
+button {position: relative; z-index: 2;}
+
 /* Images changer.css */
 .color_changer {
 	position: absolute;
@@ -48,6 +50,6 @@ a.button:active {bottom: 24px;}
 	cursor: pointer;
 }
 
-	.color_changer div {display: inline-block}
-	.color_changer .rows {width: 100%}
-	.color_changer .cols {height: 100%}
+	.color_changer div {display: block}
+	.color_changer .rows {width: 100%; clear: both;}
+	.color_changer .cols {height: 100%; float: left;}
