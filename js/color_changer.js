@@ -60,9 +60,6 @@ function color_changer(config) {
 	
 	this.build = function(){
 
-       // element.className = element.className + ' rows-' + rows;
-       // element.className = element.className + ' cols-' + cols;
-
 		// Créé les lignes
 		for(i=1 ; i<= rows ; i++) {
 			var row=document.createElement("div");
@@ -287,13 +284,13 @@ toolbox.style.top = -toolbox.offsetHeight + 'px';
 toolbox_toggle.onclick = function(){
 
 	if(toolbox.style.top != '0px') {
-		toolbox.style.top = '0px';
+		//toolbox.style.top = '0px';
 		toolbox_toggle.className = 'toggled';
-		//animate(toolbox, 'top', 0, 500);
+		animate(toolbox, 'top', 'px', -toolbox.offsetHeight, 0, 150);
 	} else {
-		toolbox.style.top = -toolbox.offsetHeight + 'px';
+		//toolbox.style.top = -toolbox.offsetHeight + 'px';
 		toolbox_toggle.className = '';
-		//animate(toolbox, 'top', -72, 500);
+		animate(toolbox, 'top', 'px', 0, -toolbox.offsetHeight, 150);
 	}
 
 }
@@ -366,25 +363,13 @@ inputCols.onchange = function(){
 
 
 
-function animate(elmt, property, value, time){
-
-	the_timer = time / Math.abs(value);
-
-	counter = parseInt(elmt.style[property]);
-
-	animate_timer = setInterval(function() { 
-
-					counter += value / the_timer + 'px';
-
-					elmt.style[property] = counter;
-
-					if(counter != value) 
-						clearInterval(animate_timer);
-
-            	}, the_timer);
-
-	//elmt.style[property] = value;
-
+function animate(elem,style,unit,from,to,time) {
+    if( !elem) return;
+    var start = new Date().getTime(),
+        timer = setInterval(function() {
+            var step = Math.min(1,(new Date().getTime()-start)/time);
+            elem.style[style] = (from+step*(to-from))+unit;
+            if( step == 1) clearInterval(timer);
+        },25);
+    elem.style[style] = from+unit;
 }
-
-
