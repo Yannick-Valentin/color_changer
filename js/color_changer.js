@@ -284,7 +284,7 @@ var color_changer = new color_changer({
 //==================================================================================
 
 
-document.ontouchstart = function(e){e.preventDefault()}
+//document.ontouchstart = function(e){e.preventDefault()}
 
 
 // Bouton play
