@@ -242,6 +242,24 @@ function color_changer(config) {
 
 
 
+function animate(elem,style,unit,from,to,time) {
+    if( !elem) return;
+    var start = new Date().getTime(),
+        timer = setInterval(function() {
+            var step = Math.min(1,(new Date().getTime()-start)/time);
+            elem.style[style] = (from+step*(to-from))+unit;
+            if( step == 1) clearInterval(timer);
+        },25);
+    elem.style[style] = from+unit;
+}
+
+
+
+
+//==================================================================================
+
+
+
 
 // Init
 colors = ['#DE5654', '#F0A954', '#5023FA'];
@@ -262,6 +280,11 @@ var color_changer = new color_changer({
 
 
 
+
+//==================================================================================
+
+
+document.ontouchstart = function(e){e.preventDefault()}
 
 
 // Bouton play
@@ -284,13 +307,13 @@ toolbox.style.top = -toolbox.offsetHeight + 'px';
 toolbox_toggle.onclick = function(){
 
 	if(toolbox.style.top != '0px') {
-		//toolbox.style.top = '0px';
+		toolbox.style.top = '0px';
 		toolbox_toggle.className = 'toggled';
-		animate(toolbox, 'top', 'px', -toolbox.offsetHeight, 0, 150);
+		//animate(toolbox, 'top', 'px', -toolbox.offsetHeight, 0, 150);
 	} else {
-		//toolbox.style.top = -toolbox.offsetHeight + 'px';
+		toolbox.style.top = -toolbox.offsetHeight + 'px';
 		toolbox_toggle.className = '';
-		animate(toolbox, 'top', 'px', 0, -toolbox.offsetHeight, 150);
+		//animate(toolbox, 'top', 'px', 0, -toolbox.offsetHeight, 150);
 	}
 
 }
@@ -359,17 +382,4 @@ inputCols.onchange = function(){
 		toggle_play.className = 'pause';
 	else
 		toggle_play.className = '';
-}
-
-
-
-function animate(elem,style,unit,from,to,time) {
-    if( !elem) return;
-    var start = new Date().getTime(),
-        timer = setInterval(function() {
-            var step = Math.min(1,(new Date().getTime()-start)/time);
-            elem.style[style] = (from+step*(to-from))+unit;
-            if( step == 1) clearInterval(timer);
-        },25);
-    elem.style[style] = from+unit;
 }
