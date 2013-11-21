@@ -241,4 +241,25 @@ button {position: relative; z-index: 2;}
 
 	.color_changer div {display: block}
 	.color_changer .rows {width: 100%; clear: both;}
-	.color_changer .cols {height: 100%; float: left;}
+	.color_changer .cols {
+		height: 100%; 
+		float: left;
+
+		border-left: 1px solid transparent;
+		border-top: 1px solid transparent;
+
+		-webkit-transition: border-left-color 300ms ease, border-top-color 300ms ease;
+		-moz-transition: border-left-color 300ms ease, border-top-color 300ms ease;
+		-ms-transition: border-left-color 300ms ease, border-top-color 300ms ease;
+		-o-transition: border-left-color 300ms ease, border-top-color 300ms ease;
+		transition: border-left-color 300ms ease, border-top-color 300ms ease;
+	}
+
+
+	.color_changer.bordered .cols {
+		border-left-color:rgba(255,255,255,0.1);
+		border-top-color:rgba(255,255,255,0.1);
+	}
+
+		.color_changer .rows:first-child .cols {border-top: none}
+		.color_changer .cols:first-child {border-left: none}

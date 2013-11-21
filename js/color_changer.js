@@ -22,7 +22,8 @@ function color_changer(config) {
 		interval_timer = params.timer,
 		rows = params.rows,
 		cols = params.cols,
-		interval;
+		interval,
+		element_class = element.className;
 
 		is_playing = false;
 
@@ -204,6 +205,15 @@ function color_changer(config) {
 	// Méthode update_rows();
 	this.update_rows = function(new_rows){
 
+		var myRegExp = /bordered/;
+		if(element.className.search(myRegExp) == -1) {
+			element.className = element_class + ' bordered';
+
+			setTimeout(function(){
+				element.className = element_class;
+			}, 1000);
+		}
+
 		rows = new_rows;
 
 		element.innerHTML = '';
@@ -219,6 +229,15 @@ function color_changer(config) {
 
 	// Méthode update_cols();
 	this.update_cols = function(new_cols){
+		
+		var myRegExp = /bordered/;
+		if(element.className.search(myRegExp) == -1) {
+			element.className = element_class + ' bordered';
+
+			setTimeout(function(){
+				element.className = element_class;
+			}, 1000);
+		}
 
 		cols = new_cols;
 
