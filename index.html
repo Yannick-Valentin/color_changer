@@ -18,33 +18,40 @@
 
 <body>
 
-	<div id="toolbox">
-			
-		<div>
-			<label for="colors">Colors :</label> <input type="range" value="10" max="100" min="2" name="colors" id="colors" /><span class="value">10</span>
-		</div>
-		<div>
-			<label for="timer">Timer :</label> <input type="range" value="50" max="500" min="1" name="timer" id="timer" /><span class="value">50ms</span>
+	<div id="global">
+
+		<div id="toolbox">
+				
+			<div>
+				<label for="colors">Colors :</label> <input type="range" value="10" max="100" min="2" name="colors" id="colors" /><span class="value">10</span>
+			</div>
+			<div>
+				<label for="timer">Timer :</label> <input type="range" value="50" max="500" min="1" name="timer" id="timer" /><span class="value">50ms</span>
+			</div>
+
+			<div class="hr"></div>
+				
+			<div>
+				<label for="rows">Rows :</label> <input type="range" value="1" max="100" min="1" name="rows" id="rows" /><span class="value">1</span>
+			</div>
+			<div>
+				<label for="cols">Cols :</label> <input type="range" value="1" max="10" min="1" name="cols" id="cols" /><span class="value">1</span>
+			</div>
+
+			<div id="toolbox_toggle">Options</div>
+
 		</div>
 
-		<div class="hr"></div>
-			
-		<div>
-			<label for="rows">Rows :</label> <input type="range" value="1" max="100" min="1" name="rows" id="rows" /><span class="value">1</span>
-		</div>
-		<div>
-			<label for="cols">Cols :</label> <input type="range" value="1" max="10" min="1" name="cols" id="cols" /><span class="value">1</span>
-		</div>
 
-		<div id="toolbox_toggle">Options</div>
+		<div id="color_changer" class="color_changer"></div>
+
+
+
+		<div id="toggle_play_btn"></div>
+
+		<a class="button" href="http://yvalentin.com" target="_blank" id="test">Cheers<em>!</em></a>
 
 	</div>
-
-	<div id="color_changer" class="color_changer"></div>
-
-	<div id="toggle_play_btn"></div>
-
-	<a class="button" href="http://yvalentin.com" target="_blank">Cheers<em>!</em></a>
 
 	<script src="js/color_changer.js"></script>
 
